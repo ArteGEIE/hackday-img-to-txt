@@ -1,9 +1,98 @@
-img {
-    width: 300px;
-    height: auto;
+@font-face {
+    font-family: barna;
+    src:url("datas/fonts/BarnaRegular/Barna-Regular.woff2"),
+        url("datas/fonts/BarnaRegular/Barna-Regular.woff");
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+font-family: barnaBold;
+src:url("datas/fonts/BarnaBold/Barna-Bold.woff2"),
+    url("datas/fonts/BarnaBold/Barna-Bold.woff");
+font-style: bold;
+font-weight: 700;
+font-display: swap;
+}
+
+body {
+    font-family: barna, Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+h1, h3, h4 {
+    font-family:barnaBold;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+}
+
+h2, .h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+div {
+    position: relative;
+}
+
+label {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    position: absolute;
+    top: 0; right: -2px;
+    cursor: pointer;
+    width: 40px;
+    min-height: 100%;
+    border: 0;
+    background: #000;
+    color: #fff;
+    font-family: barnaBold;
+}
+
+input {
+    width: 100%;
+    min-height: 40px;
+    padding: 0;
+    border-radius: 3px;
+    border: 2px solid #000;
+}
+
+.logo {
+    width: 25px;
 }
 
 .hidden {
     visibility: hidden;
     opacity: 0;
 }
+
+figure {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #eee;
+}
+
+figcaption {
+    padding-left: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    color: #555;
+    border-left: 5px solid #ddd;
+}
+#img-to-txt {
+    width: 100%;
+    height: auto;
+}
+
