@@ -6,15 +6,18 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Hackday - Image to Text</h1>
+        <h1><img class="logo" src="datas/logo.svg">Hackday - Image to Text</h1>
         <div>
-            <label for="imgURL">Image URL</label>
-            <input id="imgURL" type="text">
-            <button onclick="getDesc()">OK</button>
+            <label class="h2" for="imgURL">Image URL</label>
+            <div>
+                <input id="imgURL" type="text">
+                <button onclick="getDesc()">OK</button>
+            </div>
         </div>
+        <h2>Résultat</h2>
         <figure>
-            <img src="" alt="">
-            <figcaption class="hidden">ICI SE TROUVE LA DESCRIPTION GENEREE</figcaption>
+            <img id="img-to-txt" src="" alt="">
+            <figcaption class="hidden">Ici se trouve la description générée</figcaption>
         </figure>
     </body>
 </html>

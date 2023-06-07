@@ -6,7 +6,8 @@ function getValue() {
 
 function displayImage() {
     const inputValue = getValue();
-    const img = document.querySelector("img");
+    const img = document.getElementById("img-to-txt");
+    console.log(img);
     img.src = inputValue;
 }
 
