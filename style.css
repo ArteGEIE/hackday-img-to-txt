@@ -1,0 +1,9 @@
+img {
+    width: 300px;
+    height: auto;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
