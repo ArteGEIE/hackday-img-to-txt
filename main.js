@@ -2,40 +2,47 @@ let json_data = '';
 
 function getValue() {
     const inputValue = document.getElementById("imgURL").value; 
-    console.log(inputValue);
     return inputValue;
 }
 
 function displayImage() {
     const inputValue = getValue();
     const img = document.getElementById("img-to-txt");
-    console.log(img);
     img.src = inputValue;
 }
 
 function sendURL(data) {
-    const xhr = new XMLHttpRequest();
-    console.log("UNSENT", xhr.readyState);
-    const subKey= "";
-    xhr.open("POST", "https://cv-eus-poc-01.cognitiveservices.azure.com/computervision/imageanalysis:analyze?api-version=2023-02-01-preview&language=en&gender-neutral-caption=False&features=DenseCaptions");
-    const desc = document.querySelector("figcaption");
-    desc.innerHTML = "LOADING...";
-    console.log("OPENED", xhr.readyState);
+    const xhr = new XMLHttpRequest();    
+    xhr.open("GET", "https://europe-west3-summer-hackday.cloudfunctions.net/altitude?url=" + data);
+
+    let container = document.querySelector("figcaption");
+    container.innerHTML = "LOADING...";
+    
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("Ocp-Apim-Subscription-Key", subKey);
-    const body = JSON.stringify({
-        url: data
-    });
 
     xhr.onload = () => {
+
         json_data = JSON.parse(xhr.responseText);
-        const text = json_data.denseCaptionsResult.values[0].text;
-        const desc = document.querySelector("figcaption");
-        desc.innerHTML = text;
-        console.log("Done")
+
+        // json_data = {
+        //     "French": "Une femme chantant dans un microphone",
+        //     "German": "Eine Frau singt in ein Mikrofon",
+        //     "English": "A woman singing into a microphone",
+        //     "Spanish": "Una mujer cantando en un micrófono",
+        //     "Polish": "Kobieta śpiewająca do mikrofonu",
+        //     "Italian": "Una donna che canta in un microfono"
+        // };
+      
+        container.innerHTML = container.innerHTML.replace('LOADING...', '');
+        
+        Object.keys(json_data).forEach(function(k){
+            let p = document.createElement("p");
+            p.innerText = k + ' - ' + json_data[k]; 
+            container.appendChild(p);
+        });
     }
 
-    xhr.send(body);
+    xhr.send();
 }
 
 function getDesc() {
@@ -46,12 +53,7 @@ function getDesc() {
 function displayDesc() {    
     displayImage();
     getDesc();
-    const desc = document.querySelector("figcaption");
-    desc.classList.remove("hidden");
 }
-
-// https://api-cdn.arte.tv/img/v2/image/xz4kbUtZTD4QkMYYwMuN9B/1920x1080
-
 
 
 
